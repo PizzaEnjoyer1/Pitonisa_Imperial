@@ -68,10 +68,10 @@ st.subheader("Escribe tu nombre en el canvas")
 
 # Create a canvas component
 canvas_result = st_canvas(
-    fill_color=bg_color,  # Fixed fill color with some opacity
+    fill_color= "white",  # Fixed fill color with some opacity
     stroke_width=stroke_width,
     stroke_color=stroke_color,
-    background_color=bg_color,
+    background_color="white",
     height=720,
     width=1280,
     #background_image= None #Image.open(bg_image) if bg_image else None,
