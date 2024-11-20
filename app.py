@@ -105,7 +105,7 @@ def analizar_destino_maya(nombre):
     
     # Construir la predicción
     prediccion = f"""
-    {destinos_principales.get(nombre[0], "Los antiguos algoritmos predicen grandes cambios en tu destino")}.
+    {destinos_principales.get(nombre[0], f"{nombre}, los antiguos algoritmos predicen grandes cambios en tu destino")}.
     
     Este destino se manifestará {tiempos[ciclo_lunar]}. {intensidades[intensidad]}. 
     
