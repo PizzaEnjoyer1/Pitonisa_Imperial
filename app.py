@@ -108,12 +108,6 @@ st.title('Pitonisa Imperial: Descubre tu destino')
 image = Image.open('pitonisa.jpg')
 st.image(image)
 
-os.environ['OPENAI_API_KEY'] = st.secrets["settings"]["key"] 
-
-api_key_2 = os.environ['OPENAI_API_KEY']
-client = OpenAI(api_key=api_key_2)
-
-
 st.subheader("Escribe tu nombre en el canvas")
 
 
