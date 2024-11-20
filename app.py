@@ -13,16 +13,6 @@ from streamlit_drawable_canvas import st_canvas
 import numpy as np
 import pandas as pd
 
-with st.sidebar:
-
-  st.title("Cambia los parámetros del canvas")
-  
-  drawing_mode = "freedraw"
-
-  stroke_width = st.slider("Grosor del pincel", 1, 100, 10)
-
-  stroke_color = st.color_picker("Selecciona el color de linea", "#000000")
-  
 def analizar_destino_maya(nombre):
     nombre = nombre.upper().strip()
     
@@ -157,13 +147,14 @@ image = Image.open('pitonisa.jpg')
 st.image(image)
 
 st.subheader("Escribe tu nombre en el canvas")
+stroke_width = st.slider("Grosor del pincel", 1, 100, 10)
 
 
 # Create a canvas component
 canvas_result = st_canvas(
     fill_color= "white",  # Fixed fill color with some opacity
     stroke_width=stroke_width,
-    stroke_color=stroke_color,
+    stroke_color="black",
     background_color="white",
     height=200,
     width=1280,
