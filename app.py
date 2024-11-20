@@ -63,13 +63,8 @@ with st.sidebar:
 st.title('Pitonisa Imperial: Descubre tu destino')
 image = Image.open('pitonisa.jpg')
 st.image(image)
-#with open('Experts.json') as source:
-#     animation=json.load(source)
-#st.lottie(animation,width =350)
 
-#ke = st.text_input('Ingresa tu Clave')
-#os.environ['OPENAI_API_KEY'] = st.secrets['OPENAI_API_KEY']
-os.environ['OPENAI_API_KEY'] = st.secrets["settings"]["key"] #ke
+os.environ['OPENAI_API_KEY'] = st.secrets["settings"]["key"] 
 
 api_key_2 = os.environ['OPENAI_API_KEY']
 client = OpenAI(api_key=api_key_2)
@@ -92,7 +87,6 @@ canvas_result = st_canvas(
 )
 
 
-bg_image = st.file_uploader(type=["png", "jpg"])
 
 if canvas_result.image_data is not None:
 
@@ -101,6 +95,8 @@ if canvas_result.image_data is not None:
         input_numpy_array = np.array(canvas_result.image_data)
         input_image = Image.fromarray(input_numpy_array.astype('uint8'),'RGBA')
         input_image.save('img.png')
+        with open(input_image.name, 'wb') as f:
+            f.write(input_image.read())
         st.image(input_image)
         img_rgb = cv2.cvtColor('img.png', cv2.COLOR_BGR2RGB)
         text = pytesseract.image_to_string(img_rgb)
