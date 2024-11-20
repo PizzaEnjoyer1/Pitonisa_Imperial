@@ -140,7 +140,7 @@ st.image(image)
 st.subheader("Escribe tu nombre en el canvas")
 stroke_width = st.slider("Grosor del pincel", 1, 100, 10)
 
-st.session_state.stroke="black"
+st.session_state.stroke=""
 
 col1, col2 = st.columns(2)
 with col1:
