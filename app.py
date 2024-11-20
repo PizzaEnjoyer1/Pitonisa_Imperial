@@ -101,6 +101,7 @@ if canvas_result.image_data is not None:
         # Encode the image
         input_numpy_array = np.array(canvas_result.image_data)
         input_image = Image.fromarray(input_numpy_array.astype('uint8'),'RGBA')
+        st.image(input_image)
 
 #st.write(st.secrets["settings"]["key"])
 
