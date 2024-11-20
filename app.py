@@ -97,6 +97,9 @@ pdfFileObj = open('example2.pdf', 'rb')
 # creating a pdf reader object
 pdfReader = PyPDF2.PdfReader(pdfFileObj)
 
+analyze_button = st.button("Analiza la imagen", type="secondary")
+
+
 if canvas_result.image_data is not None and api_key and analyze_button:
 
     with st.spinner("Analizando ..."):
