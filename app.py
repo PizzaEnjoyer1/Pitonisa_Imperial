@@ -140,22 +140,19 @@ st.image(image)
 st.subheader("Escribe tu nombre en el canvas")
 stroke_width = st.slider("Grosor del pincel", 1, 100, 10)
 
-stroke=""
+color = st.radio(
+    "Selecciona el color de escritura", 
+    ["Negro", "Blanco"], 
+    horizontal=True
+)
 
-col1, col2 = st.columns(2)
-with col1:
-    if st.button("Blanco"):
-        stroke="white",
-
-with col2:
-    if st.button("Negro"):
-        stroke="black"
+stroke_color = "black" if color == "Negro" else "white"
 
 # Create a canvas component
 canvas_result = st_canvas(
     fill_color= "white",  # Fixed fill color with some opacity
     stroke_width=stroke_width,
-    stroke_color=stroke,
+    stroke_color=stroke_color,
     background_color="white",
     height=200,
     width=1280,
