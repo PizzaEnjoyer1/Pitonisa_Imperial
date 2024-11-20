@@ -17,6 +17,9 @@ import time
 from streamlit_lottie import st_lottie
 import json
 import openai
+import pytesseract
+import cv2
+import glob
 
 
 
