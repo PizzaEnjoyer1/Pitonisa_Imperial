@@ -14,12 +14,6 @@ import numpy as np
 import pandas as pd
 
 
-def generar_audio(prediccion):
-    tts = gTTS(text=text, lang='es-ES', slow=False)
-    filename = f"temp/prediccion.mp3"
-    tts.save(filename)
-    return filename
-
 def analizar_destino_maya(nombre):
     nombre = nombre.upper().strip()
     
@@ -202,9 +196,7 @@ if canvas_result.image_data is not None:
                 st.write("¿Así que te llamas ", cleaned_text, "? Perfecto, ¡Ahora revelaré tu destino!")
                 prediccion = analizar_destino_maya(cleaned_text)
                 st.markdown(f"### 🔮 Los cristales de datos han hablado:\n\n{prediccion}")
-                if st.button("Escuchar predicción"):
-                    audio_file = generar_audio(prediccion)
-                    st.audio(audio_file, format="audio/mp3")
+
             else:
                 st.write("No se detectó texto en la imagen")
                 
@@ -212,15 +204,5 @@ if canvas_result.image_data is not None:
             st.error(f"Error procesando la imagen: {str(e)}")
 
 
-def remove_files(n):
-    mp3_files = glob.glob("temp/*mp3")
-    if len(mp3_files) != 0:
-        now = time.time()
-        n_days = n * 86400
-        for f in mp3_files:
-            if os.stat(f).st_mtime < now - n_days:
-                os.remove(f)
-
-remove_files(7)
 
 
