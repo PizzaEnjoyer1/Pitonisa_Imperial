@@ -52,6 +52,23 @@ st.image(image)
 #os.environ['OPENAI_API_KEY'] = st.secrets['OPENAI_API_KEY']
 os.environ['OPENAI_API_KEY'] = st.secrets["settings"]["key"] #ke
 
+
+st.subheader("Dibuja el boceto en el panel  y presiona el botón para analizarla")
+
+
+# Create a canvas component
+canvas_result = st_canvas(
+    fill_color=fill_color,  # Fixed fill color with some opacity
+    stroke_width=stroke_width,
+    stroke_color=stroke_color,
+    background_color=bg_color,
+    height=720,
+    width=1280,
+    #background_image= None #Image.open(bg_image) if bg_image else None,
+    drawing_mode=drawing_mode,
+    key="canvas",
+)
+
 #st.write(st.secrets["settings"]["key"])
 
 pdfFileObj = open('example2.pdf', 'rb')
