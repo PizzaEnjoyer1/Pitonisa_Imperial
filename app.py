@@ -15,8 +15,8 @@ import pandas as pd
 
 
 def generar_audio(prediccion):
-    tts = gTTS(text=text, lang='es')
-    filename = f"temp/prediccion_{time.strftime('%Y%m%d%H%M%S')}.mp3"
+    tts = gTTS(text=text, lang='es', slow=False)
+    filename = f"temp/prediccion.mp3"
     tts.save(filename)
     return filename
 
