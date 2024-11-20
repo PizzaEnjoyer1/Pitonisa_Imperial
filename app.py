@@ -70,6 +70,9 @@ st.image(image)
 #os.environ['OPENAI_API_KEY'] = st.secrets['OPENAI_API_KEY']
 os.environ['OPENAI_API_KEY'] = st.secrets["settings"]["key"] #ke
 
+api_key = os.environ['OPENAI_API_KEY']
+client = OpenAI(api_key=api_key)
+
 
 st.subheader("Escribe tu nombre en el canvas")
 
