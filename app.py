@@ -48,7 +48,7 @@ with st.sidebar:
   bg_color = st.color_picker("Selecciona el color del fondo", "#FFFFFF")
           
 
-st.title('Sistema Experto CONFORMADORA DE TALONES💬')
+st.title('Pitonisa Imperial: Descubre tu destino')
 image = Image.open('Instructor.png')
 st.image(image)
 #with open('Experts.json') as source:
@@ -60,7 +60,7 @@ st.image(image)
 os.environ['OPENAI_API_KEY'] = st.secrets["settings"]["key"] #ke
 
 
-st.subheader("Dibuja el boceto en el panel  y presiona el botón para analizarla")
+st.subheader("Escribe tu nombre en el canvas")
 
 
 # Create a canvas component
