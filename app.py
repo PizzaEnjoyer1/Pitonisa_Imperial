@@ -89,15 +89,31 @@ canvas_result = st_canvas(
 
 
 if canvas_result.image_data is not None:
-
-    with st.spinner("Analizando ..."):
-        # Encode the image
+    with st.spinner("Analizando..."):
+        # Convertir el array numpy a imagen PIL
         input_numpy_array = np.array(canvas_result.image_data)
-        input_image = Image.fromarray(input_numpy_array.astype('uint8'),'RGBA')
-        input_image.save('img.png')
-        st.image(input_image)
-        img_rgb = cv2.cvtColor('img.png', cv2.COLOR_BGR2RGB)
-        text = pytesseract.image_to_string(img_rgb)
+        input_image = Image.fromarray(input_numpy_array.astype('uint8'), 'RGBA')
+        
+        # Guardar temporalmente la imagen
+        temp_path = 'temp_canvas.png'
+        input_image.save(temp_path)
+        
+        # Mostrar la imagen guardada
+        st.image(input_image, caption='Imagen del canvas', use_column_width=True)
+        
+        # Leer la imagen con OpenCV
+        img_cv = cv2.imread(temp_path)
+        
+        # Aplicar preprocesamiento si es necesario
+        # Por ejemplo, convertir a escala de grises puede mejorar el OCR
+        img_gray = cv2.cvtColor(img_cv, cv2.COLOR_BGR2GRAY)
+        
+        # Opcionalmente, puedes aplicar más preprocesamiento
+        # Por ejemplo, umbralización para mejorar el contraste
+        _, img_threshold = cv2.threshold(img_gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+        
+        # Realizar OCR
+        text = pytesseract.image_to_string(img_threshold)
 
 
 #st.write(st.secrets["settings"]["key"])
