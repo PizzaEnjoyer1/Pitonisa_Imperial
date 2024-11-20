@@ -10,7 +10,8 @@ import pytesseract
 import cv2
 import glob
 from streamlit_drawable_canvas import st_canvas
-
+import numpy as np
+import pandas as pd
 
 with st.sidebar:
 
