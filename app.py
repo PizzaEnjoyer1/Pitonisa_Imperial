@@ -90,33 +90,23 @@ canvas_result = st_canvas(
 
 if canvas_result.image_data is not None:
     with st.spinner("Analizando..."):
-        # Convertir el array numpy a imagen PIL
-        input_numpy_array = np.array(canvas_result.image_data)
-        input_image = Image.fromarray(input_numpy_array.astype('uint8'), 'RGBA')
-        
-        # Guardar temporalmente la imagen
-        temp_path = 'temp_canvas.png'
-        input_image.save(temp_path)
-        
-        # Mostrar la imagen guardada
-        st.image(input_image, caption='Imagen del canvas', use_column_width=True)
-        
         try:
-            # Leer la imagen con OpenCV
-            img_cv = cv2.imread(temp_path)
+            # Obtener el array numpy directamente del canvas
+            input_numpy_array = np.array(canvas_result.image_data)
             
-            # Aplicar preprocesamiento
-            img_gray = cv2.cvtColor(img_cv, cv2.COLOR_BGR2GRAY)
-            _, img_threshold = cv2.threshold(img_gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+            # Convertir de RGBA a RGB
+            rgb_array = input_numpy_array[:, :, :3]
+            
+            # Convertir a escala de grises
+            gray_array = cv2.cvtColor(rgb_array, cv2.COLOR_RGB2GRAY)
+            
+            # Aplicar umbralización
+            _, threshold = cv2.threshold(gray_array, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
             
             # Realizar OCR y procesar el texto
-            text = pytesseract.image_to_string(img_threshold)
+            text = pytesseract.image_to_string(threshold)
             
-            # Limpiar y formatear el texto:
-            # 1. Dividir por cualquier tipo de salto de línea
-            # 2. Filtrar líneas vacías
-            # 3. Eliminar espacios extras
-            # 4. Unir todo con espacios
+            # Limpiar y formatear el texto en una línea
             cleaned_text = ' '.join(
                 word.strip()
                 for line in text.splitlines()
@@ -131,13 +121,6 @@ if canvas_result.image_data is not None:
                 
         except Exception as e:
             st.error(f"Error procesando la imagen: {str(e)}")
-            
-        finally:
-            # Limpiar el archivo temporal
-            try:
-                os.remove(temp_path)
-            except:
-                pass
 
 
 #st.write(st.secrets["settings"]["key"])
