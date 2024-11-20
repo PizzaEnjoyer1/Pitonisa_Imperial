@@ -151,6 +151,7 @@ def analizar_destino_maya(nombre):
     """
     
     return prediccion.strip()
+  
 st.title('Pitonisa Imperial: Descubre tu destino')
 image = Image.open('pitonisa.jpg')
 st.image(image)
