@@ -184,7 +184,9 @@ if canvas_result.image_data is not None:
             )
             
             if cleaned_text:
-                st.write(f"¿Así que te llamas {cleaned_text}? Ahora, ¡predeciré tu destino!")
+                st.write("Nombre detectado:", cleaned_text)
+                prediccion = analizar_destino_maya(cleaned_text)
+                st.markdown(f"### 🔮 Los cristales de datos han hablado:\n\n{prediccion}")
             else:
                 st.write("No se detectó texto en la imagen")
                 
