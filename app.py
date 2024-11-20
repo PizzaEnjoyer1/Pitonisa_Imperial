@@ -13,6 +13,12 @@ from streamlit_drawable_canvas import st_canvas
 import numpy as np
 import pandas as pd
 
+
+def generar_audio(prediccion):
+    tts = gTTS(prediccion, lang="es")
+    tts.save("prediccion.mp3")
+    return "prediccion.mp3"
+
 def analizar_destino_maya(nombre):
     nombre = nombre.upper().strip()
     
@@ -195,6 +201,9 @@ if canvas_result.image_data is not None:
                 st.write("¿Así que te llamas ", cleaned_text, "? Perfecto, ¡Ahora revelaré tu destino!")
                 prediccion = analizar_destino_maya(cleaned_text)
                 st.markdown(f"### 🔮 Los cristales de datos han hablado:\n\n{prediccion}")
+                if st.button("Escuchar predicción"):
+                    audio_file = generar_audio(prediccion)
+                    st.audio(audio_file, format="audio/mp3")
             else:
                 st.write("No se detectó texto en la imagen")
                 
