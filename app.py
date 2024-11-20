@@ -159,7 +159,7 @@ canvas_result = st_canvas(
     height=200,
     width=1280,
     #background_image= None #Image.open(bg_image) if bg_image else None,
-    drawing_mode="freemode",
+    drawing_mode="freedraw",
     key="canvas",
 )
 
