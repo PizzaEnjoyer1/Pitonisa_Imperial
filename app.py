@@ -89,17 +89,114 @@ canvas_result = st_canvas(
 
 
 if canvas_result.image_data is not None:
+    # Convertir la imagen del canvas a formato RGB
+    input_numpy_array = np.array(canvas_result.image_data)
+    input_image = Image.fromarray(input_numpy_array.astype('uint8'), 'RGBA')
+    img_rgb = input_image.convert("RGB")  # Asegurarse de que la imagen esté en formato RGB
+    text = pytesseract.image_to_string(img_rgb)
 
-    with st.spinner("Analizando ..."):
-        # Encode the image
-        input_numpy_array = np.array(canvas_result.image_data)
-        input_image = Image.fromarray(input_numpy_array.astype('uint8'),'RGBA')
-        input_image.save('img.png')
-        with open(input_image.name, 'wb') as f:
-            f.write(input_image.read())
-        st.image(input_image)
-        img_rgb = cv2.cvtColor('img.png', cv2.COLOR_BGR2RGB)
-        text = pytesseract.image_to_string(img_rgb)
+# Solo mostrar los parámetros de traducción si se ha reconocido texto
+if text.strip():  # Asegurarse de que el texto no esté vacío
+    detected_language = translator.detect(text).lang  # Detectar el idioma del texto
+    warning_message.empty()  # Limpiar el mensaje de advertencia
+    with st.sidebar:
+        st.subheader("Parámetros de traducción")
+        
+        try:
+            os.mkdir("temp")
+        except FileExistsError:
+            pass
+
+        # Cambiar automáticamente el lenguaje de entrada
+        input_language = detected_language
+
+        # Mostrar el idioma detectado
+        lang_map = {
+            "en": "Inglés",
+            "es": "Español",
+            "bn": "Bengalí",
+            "ko": "Coreano",
+            "zh-cn": "Mandarín",
+            "ja": "Japonés",
+            "fr": "Francés",
+            "de": "Alemán",
+            "pt": "Portugués",
+            "ru": "Ruso"  # Agregar ruso
+        }
+
+        st.markdown(f"### El texto reconocido fue:")
+        st.write(text)
+        st.markdown(f"**Idioma detectado:** {lang_map.get(input_language, 'Desconocido')}")
+
+        # Establecer el idioma de entrada en función del idioma detectado
+        in_lang_name = lang_map.get(input_language, "Desconocido")
+        
+        # Seleccionar el idioma de entrada automáticamente
+        in_lang_options = list(lang_map.values())
+        in_lang_index = in_lang_options.index(in_lang_name) if in_lang_name in in_lang_options else 0
+
+        # Desplegable para el lenguaje de entrada
+        st.selectbox("Seleccione el lenguaje de entrada", in_lang_options, index=in_lang_index)
+
+        out_lang = st.selectbox(
+            "Selecciona tu idioma de salida",
+            ("Inglés", "Español", "Bengalí", "Coreano", "Mandarín", "Japonés", "Francés", "Alemán", "Portugués", "Ruso"),  # Agregar ruso
+        )
+        output_language = {
+            "Inglés": "en",
+            "Español": "es",
+            "Bengalí": "bn",
+            "Coreano": "ko",
+            "Mandarín": "zh-cn",
+            "Japonés": "ja",
+            "Francés": "fr",
+            "Alemán": "de",
+            "Portugués": "pt",
+            "Ruso": "ru"  # Agregar ruso
+        }.get(out_lang, "en")
+
+        english_accent = st.selectbox(
+            "Seleccione el acento (solo aplica para inglés; no afecta el audio en otros idiomas)",
+            (
+                "Default",
+                "India",
+                "United Kingdom",
+                "United States",
+                "Canada",
+                "Australia",
+                "Ireland",
+                "South Africa",
+            ),
+        )
+        
+        tld = {
+            "Default": "com",
+            "India": "co.in",
+            "United Kingdom": "co.uk",
+            "United States": "com",
+            "Canada": "ca",
+            "Australia": "com.au",
+            "Ireland": "ie",
+            "South Africa": "co.za",
+        }.get(english_accent, "com")
+
+        if st.button("Convertir"):
+            loading_placeholder.image("dog.gif")  # Mostrar el GIF de carga
+            
+            result, output_text = text_to_speech(input_language, output_language, text, tld)
+            audio_file = open(f"temp/{result}.mp3", "rb")
+            audio_bytes = audio_file.read()
+            st.markdown(f"## Tu audio:")
+            st.audio(audio_bytes, format="audio/mp3", start_time=0)
+
+            # Limpiar el GIF de carga después de que se genera el audio
+            loading_placeholder.empty()
+
+            # Mostrar automáticamente el texto de salida
+            st.markdown(f"## Texto de salida:")
+            st.write(f"{output_text}")
+else:
+    warning_message.warning("No se ha reconocido texto aún.")
 
 
 #st.write(st.secrets["settings"]["key"])
