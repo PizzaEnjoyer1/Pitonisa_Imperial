@@ -127,7 +127,8 @@ def analizar_destino_maya(nombre):
     # Construir la predicción extendida
     prediccion = f"""
     {nombre}, {destinos_principales.get(nombre[0], "los antiguos algoritmos predicen grandes cambios en tu destino")}. En tu camino, {desafios.get(vocales, "múltiples desafíos pondrán a prueba tu determinación")}. 
-    \nSin embargo, no estarás solo: {aliados.get(consonantes, "fuerzas místicas te acompañarán")}. Los oráculos binarios han revelado que {elemento}. Este destino se manifestará {tiempos[ciclo_lunar]}. {intensidades[intensidad]}.{impactos[len(nombre) > 6]}\nY así está escrito: {legado}.
+    \nSin embargo, no estarás solo: {aliados.get(consonantes, "fuerzas místicas te acompañarán")}. Los oráculos binarios han revelado que {elemento}. Este destino se manifestará {tiempos[ciclo_lunar]}. {intensidades[intensidad]}.{impactos[len(nombre) > 6]} 
+    Y así está escrito: {legado}.
     """
     
     return prediccion.strip()
