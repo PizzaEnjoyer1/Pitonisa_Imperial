@@ -49,7 +49,7 @@ with st.sidebar:
           
 
 st.title('Pitonisa Imperial: Descubre tu destino')
-image = Image.open('Instructor.png')
+image = Image.open('pitonisa.jpg')
 st.image(image)
 #with open('Experts.json') as source:
 #     animation=json.load(source)
