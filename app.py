@@ -43,21 +43,14 @@ def encode_image_to_base64(image_path):
 
 with st.sidebar:
 
-  st.title("Cambia los parámetros de tu canvas")
+  st.title("Cambia los parámetros del canvas")
   
-  drawing_mode = st.selectbox(
-    "Selecciona el modo de dibujo",
-    ("freedraw", "line", "transform", "rect", "circle")
-  )
-
+  drawing_mode = "freedraw"
 
   stroke_width = st.slider("Grosor del pincel", 1, 100, 10)
 
   stroke_color = st.color_picker("Selecciona el color de linea", "#000000")
-
-  fill_color = st.color_picker("Selecciona el color de relleno", "#000000")
   
-  bg_color = st.color_picker("Selecciona el color del fondo", "#FFFFFF")
           
 
 st.title('Pitonisa Imperial: Descubre tu destino')
