@@ -6,14 +6,10 @@ from gtts import gTTS
 import os
 import time
 from streamlit_lottie import st_lottie
-import json
-import openai
 import pytesseract
 import cv2
 import glob
 from streamlit_drawable_canvas import st_canvas
-import numpy as np
-import pandas as pd
 
 
 with st.sidebar:
