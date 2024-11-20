@@ -18,16 +18,16 @@ def analizar_destino_maya(nombre):
     
     # 1. Análisis por inicial - Determina el camino principal
     destinos_principales = {
-        'A': "los cristales de datos antiguos revelan que serás pionero en la fusión entre tecnología orgánica y conocimiento ancestral",
+        'A': "los cristales de datos antiguos revelan que serás pionero/a en la fusión entre tecnología orgánica y conocimiento ancestral",
         'B': "las profecías binarias indican que desarrollarás un nuevo tipo de interfaz neural que revolucionará la conexión con los dioses digitales",
-        'C': "los códices cuánticos predicen que te convertirás en un maestro de la manipulación del tejido espacio-temporal",
+        'C': "los códices cuánticos predicen que te convertirás en un/a maestro/a de la manipulación del tejido espacio-temporal",
         'D': "las matrices de jade sugieren que descubrirás antiguos secretos tecnológicos en las ruinas de Europa",
         'E': "los registros holográficos muestran que serás clave en la evolución de la bio-computación orgánica",
-        'F': "los patrones neuronales indican que te convertirás en un arquitecto de realidades virtuales sagradas",
+        'F': "los patrones neuronales indican que te convertirás en un/a arquitecto/a de realidades virtuales sagradas",
         'G': "las profecías de Tikal revelan que desarrollarás una nueva forma de energía basada en la resonancia piramidal",
         'H': "los algoritmos ancestrales predicen que serás fundamental en la expansión del imperio hacia las estrellas",
         'I': "los registros de Uxmal sugieren que crearás una nueva forma de vida artificial basada en cristales de jade",
-        'J': "las secuencias sagradas indican que serás el puente entre la tecnología maya y la consciencia colectiva",
+        'J': "las secuencias sagradas indican que serás el/la puente entre la tecnología maya y la consciencia colectiva",
         'K': "los patrones cuánticos revelan que descubrirás cómo fusionar la mente humana con la red neural maya",
         'L': "las profecías digitales muestran que revolucionarás la forma en que nos conectamos con los antiguos dioses",
         'M': "los códices de luz predicen que desarrollarás tecnología para comunicarte con civilizaciones extraterrestres",
@@ -40,7 +40,7 @@ def analizar_destino_maya(nombre):
         'T': "los códices antiguos revelan que descubrirás cómo transferir la consciencia entre cuerpos bio-sintéticos",
         'U': "las matrices de obsidiana sugieren que crearás una red de ciudades voladoras autosustentables",
         'V': "los registros neurales predicen que desarrollarás una forma de viajar entre dimensiones paralelas",
-        'W': "las secuencias de jade indican que serás pionero en la fusión entre humanos y máquinas sagradas",
+        'W': "las secuencias de jade indican que serás pionero/a en la fusión entre humanos y máquinas sagradas",
         'X': "los algoritmos temporales revelan que encontrarás la manera de comunicarte con los ancestros digitales",
         'Y': "las profecías binarias muestran que serás clave en la creación de una nueva forma de vida digital",
         'Z': "los patrones dimensionales sugieren que revolucionarás la manera de interactuar con el tejido del universo"
