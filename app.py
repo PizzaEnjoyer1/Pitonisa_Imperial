@@ -203,7 +203,7 @@ if canvas_result.image_data is not None:
                 prediccion = analizar_destino_maya(cleaned_text)
                 st.markdown(f"### 🔮 Los cristales de datos han hablado:\n\n{prediccion}")
                 if st.button("Escuchar predicción"):
-                    audio_file = generar_audio(prediccion)
+                    audio_file = generar_audio(prediccion, voice='es-ES-Standard-D')
                     st.audio(audio_file, format="audio/mp3")
             else:
                 st.write("No se detectó texto en la imagen")
