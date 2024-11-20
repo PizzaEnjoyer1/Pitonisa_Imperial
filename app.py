@@ -138,11 +138,11 @@ image = Image.open('pitonisa.jpg')
 st.image(image)
 
 st.subheader("Escribe tu nombre en el canvas")
-stroke_width = st.slider("Grosor del pincel", 1, 100, 10)
+stroke_width = st.slider("Grosor del pincel", 1, 35, 10)
 
 color = st.radio(
     "Selecciona el color de escritura", 
-    ["Negro", "Blanco"], 
+    ["Blanco", "Negro"], 
     horizontal=True
 )
 
