@@ -115,7 +115,7 @@ if canvas_result.image_data is not None:
             )
             
             if cleaned_text:
-                st.write("Texto detectado:", cleaned_text)
+                st.write(f"¿Así que te llamas {cleaned_text}? Ahora, ¡predeciré tu destino!")
             else:
                 st.write("No se detectó texto en la imagen")
                 
