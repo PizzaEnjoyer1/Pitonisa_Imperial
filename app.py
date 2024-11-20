@@ -23,13 +23,23 @@ except:
     pass
 
 with st.sidebar:
-    st.subheader("Que es un sistema Experto?")
-    st.write(
-    """Este sistema experto te resolverá dudas sobre la conformadora de talones.
-       te ayudará a aprender lo básico sobre la máquina.
-       
-    """
-                )            
+
+  st.title("Cambia los parámetros de tu canvas")
+  
+  drawing_mode = st.selectbox(
+    "Selecciona el modo de dibujo",
+    ("freedraw", "line", "transform", "rect", "circle")
+  )
+
+
+  stroke_width = st.slider("Grosor del pincel", 1, 100, 10)
+
+  stroke_color = st.color_picker("Selecciona el color de linea", "#000000")
+
+  fill_color = st.color_picker("Selecciona el color de relleno", "#000000")
+  
+  bg_color = st.color_picker("Selecciona el color del fondo", "#FFFFFF")
+          
 
 st.title('Sistema Experto CONFORMADORA DE TALONES💬')
 image = Image.open('Instructor.png')
