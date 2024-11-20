@@ -97,6 +97,70 @@ pdfFileObj = open('example2.pdf', 'rb')
 # creating a pdf reader object
 pdfReader = PyPDF2.PdfReader(pdfFileObj)
 
+if canvas_result.image_data is not None and api_key and analyze_button:
+
+    with st.spinner("Analizando ..."):
+        # Encode the image
+        input_numpy_array = np.array(canvas_result.image_data)
+        input_image = Image.fromarray(input_numpy_array.astype('uint8'),'RGBA')
+        input_image.save('img.png')
+        
+      # Codificar la imagen en base64
+ 
+        base64_image = encode_image_to_base64("img.png")
+            
+        prompt_text = (f"Describe briefly the image, and tell me a childish story about it in Spanish")
+    
+      # Create the payload for the completion request
+        messages = [
+            {
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": prompt_text},
+                    {
+                        "type": "image_url",
+                        "image_url":f"data:image/png;base64,{base64_image}",
+                    },
+                ],
+            }
+        ]
+    
+        # Make the request to the OpenAI API
+        try:
+            full_response = ""
+            message_placeholder = st.empty()
+            response = openai.chat.completions.create(
+              model= "gpt-4o-mini",  #o1-preview ,gpt-4o-mini
+              messages=[
+                {
+                   "role": "user",
+                   "content": [
+                     {"type": "text", "text": prompt_text},
+                     {
+                       "type": "image_url",
+                       "image_url": {
+                         "url": f"data:image/png;base64,{base64_image}",
+                       },
+                     },
+                   ],
+                  }
+                ],
+              max_tokens=10,
+              )
+            #response.choices[0].message.content
+            if response.choices[0].message.content is not None:
+                    full_response += response.choices[0].message.content
+                    message_placeholder.markdown(full_response + "▌")
+            # Final update to placeholder after the stream ends
+            message_placeholder.markdown(full_response)
+            if Expert== profile_imgenh:
+               st.session_state.mi_respuesta= response.choices[0].message.content #full_response 
+    
+            # Display the response in the app
+            #st.write(response.choices[0])
+        except Exception as e:
+            st.error(f"An error occurred: {e}")
+
 
     # upload file
 #pdf = st.file_uploader("Carga el archivo PDF", type="pdf")
