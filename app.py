@@ -13,7 +13,6 @@ from streamlit_drawable_canvas import st_canvas
 import numpy as np
 import pandas as pd
 
-
 def analizar_destino_maya(nombre):
     nombre = nombre.upper().strip()
     
@@ -193,16 +192,11 @@ if canvas_result.image_data is not None:
             )
             
             if cleaned_text:
-                st.write("¿Así que te llamas ", cleaned_text, "? Perfecto, ¡Ahora revelaré tu destino!")
+                st.write("¿Así que te llamas ", cleaned_text, "? ¡Ahora predeciré tu destino!")
                 prediccion = analizar_destino_maya(cleaned_text)
                 st.markdown(f"### 🔮 Los cristales de datos han hablado:\n\n{prediccion}")
-
             else:
                 st.write("No se detectó texto en la imagen")
                 
         except Exception as e:
             st.error(f"Error procesando la imagen: {str(e)}")
-
-
-
-
