@@ -91,6 +91,9 @@ canvas_result = st_canvas(
     key="canvas",
 )
 
+
+bg_image = st.file_uploader(type=["png", "jpg"])
+
 if canvas_result.image_data is not None:
 
     with st.spinner("Analizando ..."):
