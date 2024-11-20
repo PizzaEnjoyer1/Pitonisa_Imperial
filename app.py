@@ -15,9 +15,10 @@ import pandas as pd
 
 
 def generar_audio(prediccion):
-    tts = gTTS(prediccion, lang="es")
-    tts.save("prediccion.mp3")
-    return "prediccion.mp3"
+    tts = gTTS(text=text, lang='es')
+    filename = f"temp/prediccion_{time.strftime('%Y%m%d%H%M%S')}.mp3"
+    tts.save(filename)
+    return filename
 
 def analizar_destino_maya(nombre):
     nombre = nombre.upper().strip()
