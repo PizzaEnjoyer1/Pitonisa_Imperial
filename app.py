@@ -98,8 +98,7 @@ if canvas_result.image_data is not None:
         input_numpy_array = np.array(canvas_result.image_data)
         input_image = Image.fromarray(input_numpy_array.astype('uint8'),'RGBA')
         st.image(input_image)
-        img_cv = cv2.imread(input_image)
-        img_rgb = cv2.cvtColor(img_cv, cv2.COLOR_BGR2RGB)
+        img_rgb = cv2.cvtColor(input_image, cv2.COLOR_BGR2RGB)
         text = pytesseract.image_to_string(img_rgb)
 
 
