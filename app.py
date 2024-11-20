@@ -16,7 +16,6 @@ import os
 import time
 from streamlit_lottie import st_lottie
 import json
-from openai import OpenAI
 import openai
 
 
