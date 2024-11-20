@@ -102,9 +102,13 @@ if canvas_result.image_data is not None:
         input_numpy_array = np.array(canvas_result.image_data)
         input_image = Image.fromarray(input_numpy_array.astype('uint8'),'RGBA')
         st.image(input_image)
-        img_rgb = cv2.cvtColor(input_image, cv2.COLOR_BGR2RGB)
+        with open(uploaded_file.name, 'wb') as f:
+            f.write(uploaded_file.read())
+        st.success(f"Imagen guardada como {uploaded_file.name}")
+        img_cv = cv2.imread(uploaded_file.name)
+        img_rgb = cv2.cvtColor(img_cv, cv2.COLOR_BGR2RGB)
         text = pytesseract.image_to_string(img_rgb)
-        st.text(text)
+
 
 #st.write(st.secrets["settings"]["key"])
 
