@@ -114,6 +114,7 @@ if canvas_result.image_data is not None:
         
         # Realizar OCR
         text = pytesseract.image_to_string(img_threshold)
+        st.text(text)
 
 
 #st.write(st.secrets["settings"]["key"])
