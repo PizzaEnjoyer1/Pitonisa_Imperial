@@ -129,7 +129,7 @@ def analizar_destino_maya(nombre):
     return prediccion.strip()
   
 st.title('Pitonisa Imperial: Descubre tu destino')
-st.components.v1.html(open('maya_animation.html', 'r').read(), height=1000, scrolling=True)
+st.components.v1.html(open('maya_animation.html', 'r').read(), width=1000, height=240, scrolling=True)
 
 st.subheader("Escribe tu nombre en el canvas")
 stroke_width = st.slider("Grosor del pincel", 1, 35, 10)
