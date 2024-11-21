@@ -2,7 +2,6 @@ import os
 import streamlit as st
 from PIL import Image as Image, ImageOps as ImagOps
 from gtts import gTTS
-import os
 import pytesseract
 import cv2
 import glob
