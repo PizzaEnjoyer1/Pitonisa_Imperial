@@ -6,54 +6,34 @@
         body, html {
             margin: 0;
             padding: 0;
+            height: 100vh;
+            width: 100vw;
             overflow: hidden;
-            background: linear-gradient(45deg, #0a192f, #112240, #020c1b);
-            font-family: 'Courier New', monospace;
+            background-color: #000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
         }
         #animation-container {
             width: 100%;
-            height: 300px;
-            position: relative;
-            perspective: 1000px;
-            overflow: hidden;
-        }
-        .matrix-symbol {
-            position: absolute;
-            color: #00ff41;
-            text-shadow: 0 0 5px #00ff41, 0 0 10px #00ff41;
-            font-size: 16px;
-            opacity: 0;
-            transform-origin: center;
-            transition: opacity 2s ease-out;
-            animation: fall 10s linear infinite;
-        }
-        .matrix-symbol.fade-out {
-            opacity: 0 !important;
-        }
-        .pyramid-overlay {
+            height: 100%;
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(
-                    rgba(0,0,0,0.3), 
-                    rgba(0,0,0,0.3)
-                ),
-                repeating-linear-gradient(
-                    transparent 0%,
-                    rgba(13,255,0,0.05) 50%,
-                    transparent 100%
-                );
-            mix-blend-mode: overlay;
-            pointer-events: none;
+        }
+        .matrix-symbol {
+            position: absolute;
+            color: #0F0;
+            font-family: monospace;
+            font-size: 16px;
+            opacity: 0;
+            animation: fall 10s linear infinite;
         }
         @keyframes fall {
-            0% { 
-                top: -20px; 
+            0% {
+                top: -20px;
                 opacity: 0;
-                transform: rotateX(70deg) rotateY(20deg) scale(0.8);
             }
             10% {
                 opacity: 0.7;
@@ -61,21 +41,18 @@
             90% {
                 opacity: 0.7;
             }
-            100% { 
-                top: 100%; 
-                transform: rotateX(20deg) rotateY(5deg) scale(1.2);
+            100% {
+                top: 100%;
+                opacity: 0;
             }
         }
     </style>
 </head>
 <body>
-    <div id="animation-container">
-        <div class="pyramid-overlay"></div>
-    </div>
+    <div id="animation-container"></div>
     <script>
         const container = document.getElementById('animation-container');
-        const symbols = 'ᚠᚡᚢᚣᚤᚥᚦᚧᚨᚩᚪᚫᚬᚭᚮᚯᚰᚱᚲᚳᚴᚵᚶ01010101ΞΑΒΓΔ♦♣♠♥◉◌';
-
+        const symbols = 'ᚠᚡᚢᚣᚤᚥᚦᚧᚨᚩᚪᚫᚬᚭᚮᚯᚰᚱᚲᚳᚴᚵᚶ01010101ΞΑΒΓΔ';
         function createSymbol() {
             const symbol = document.createElement('div');
             symbol.classList.add('matrix-symbol');
@@ -84,21 +61,13 @@
             symbol.style.left = `${Math.random() * 100}%`;
             symbol.style.animationDuration = `${8 + Math.random() * 5}s`;
             symbol.style.animationDelay = `${Math.random() * 5}s`;
-            symbol.style.opacity = '0.7';
             
             container.appendChild(symbol);
-
-            // Fade out before removal
-            setTimeout(() => {
-                symbol.classList.add('fade-out');
-            }, 8000);
-
-            // Remove symbol after fade
+            // Remove symbol after animation
             setTimeout(() => {
                 container.removeChild(symbol);
-            }, 10000);
+            }, 15000);
         }
-
         // Create symbols continuously
         setInterval(createSymbol, 200);
     </script>
