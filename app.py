@@ -3,8 +3,6 @@ import streamlit as st
 from PIL import Image as Image, ImageOps as ImagOps
 from gtts import gTTS
 import os
-import time
-from streamlit_lottie import st_lottie
 import pytesseract
 import cv2
 import glob
