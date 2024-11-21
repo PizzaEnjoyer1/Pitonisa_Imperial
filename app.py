@@ -18,7 +18,7 @@ def analizar_destino_maya(nombre):
         'C': "los códices cuánticos predicen que te convertirás en un/a maestro/a de la manipulación del tejido espacio-temporal",
         'D': "las matrices de jade sugieren que descubrirás antiguos secretos tecnológicos en las ruinas de Europa",
         'E': "los registros holográficos muestran que serás clave en la evolución de la bio-computación orgánica",
-        'F': "los patrones neuronales indican que te convertirás en un/a arquitecto/a de realidades virtuales sagradas",A
+        'F': "los patrones neuronales indican que te convertirás en un/a arquitecto/a de realidades virtuales sagradas",
         'G': "las profecías de Tikal revelan que desarrollarás una nueva forma de energía basada en la resonancia piramidal",
         'H': "los algoritmos ancestrales predicen que serás fundamental en la expansión del imperio hacia las estrellas",
         'I': "los registros de Uxmal sugieren que crearás una nueva forma de vida artificial basada en cristales de jade",
