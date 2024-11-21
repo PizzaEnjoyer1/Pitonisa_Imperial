@@ -8,6 +8,21 @@ from streamlit_drawable_canvas import st_canvas
 import numpy as np
 import pandas as pd
 
+
+page_bg_img = """
+<style>
+[data-testid="stAppViewContainer"]{
+    background-color: #000000;
+    background-image:  radial-gradient(#2b753b 0.5px, transparent 0.5px), radial-gradient(#2b753b 0.5px, #000000 0.5px);
+    background-size: 20px 20px;
+    background-position: 0 0,10px 10px;
+}
+</style> 
+"""
+
+
+
+
 def analizar_destino_maya(nombre):
     nombre = nombre.upper().strip()
     
