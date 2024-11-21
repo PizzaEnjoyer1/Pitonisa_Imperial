@@ -6,3 +6,4 @@ Pillow
 numpy
 pandas
 gTTS==2.2.2
+altair==4.2.0
