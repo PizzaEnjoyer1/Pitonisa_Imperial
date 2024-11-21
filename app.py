@@ -158,38 +158,42 @@ canvas_result = st_canvas(
 
 
 
-if canvas_result.image_data is not None:
-    with st.spinner("Analizando..."):
-        try:
-            # Obtener el array numpy directamente del canvas
-            input_numpy_array = np.array(canvas_result.image_data)
-            
-            # Convertir de RGBA a RGB
-            rgb_array = input_numpy_array[:, :, :3]
-            
-            # Convertir a escala de grises
-            gray_array = cv2.cvtColor(rgb_array, cv2.COLOR_RGB2GRAY)
-            
-            # Aplicar umbralización
-            _, threshold = cv2.threshold(gray_array, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-            
-            # Realizar OCR y procesar el texto
-            text = pytesseract.image_to_string(threshold)
-            
-            # Limpiar y formatear el texto en una línea
-            cleaned_text = ' '.join(
-                word.strip()
-                for line in text.splitlines()
-                for word in line.split()
-                if word.strip()
-            )
-            
-            if cleaned_text:
-                st.write("¿Así que te llamas ", cleaned_text, "? ¡Ahora predeciré tu destino!")
-                prediccion = analizar_destino_maya(cleaned_text)
-                st.markdown(f"### 🔮 Los cristales de datos han hablado:\n\n{prediccion}")
-            else:
-                st.write("No se detectó texto en la imagen")
+if st.button("Predice tu futuro"):
+    if canvas_result.image_data is not None:
+        with st.spinner("Analizando..."):
+            try:
+                # Obtener el array numpy directamente del canvas
+                input_numpy_array = np.array(canvas_result.image_data)
                 
-        except Exception as e:
-            st.error(f"Error procesando la imagen: {str(e)}")
+                # Convertir de RGBA a RGB
+                rgb_array = input_numpy_array[:, :, :3]
+                
+                # Convertir a escala de grises
+                gray_array = cv2.cvtColor(rgb_array, cv2.COLOR_RGB2GRAY)
+                
+                # Aplicar umbralización
+                _, threshold = cv2.threshold(gray_array, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+                
+                # Realizar OCR y procesar el texto
+                text = pytesseract.image_to_string(threshold)
+                
+                # Limpiar y formatear el texto en una línea
+                cleaned_text = ' '.join(
+                    word.strip()
+                    for line in text.splitlines()
+                    for word in line.split()
+                    if word.strip()
+                )
+                
+                if cleaned_text:
+                    st.write("¿Así que te llamas ", cleaned_text, "? ¡Ahora predeciré tu destino!")
+                    prediccion = analizar_destino_maya(cleaned_text)
+                    st.markdown(f"### 🔮 Los cristales de datos han hablado:\n\n{prediccion}")
+                else:
+                    st.write("No se detectó texto en la imagen")
+                    
+            except Exception as e:
+                st.error(f"Error procesando la imagen: {str(e)}")
+
+    else:
+        st.write("El canvas no contiene texto")
