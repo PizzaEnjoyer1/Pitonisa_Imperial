@@ -129,7 +129,28 @@ def analizar_destino_maya(nombre):
     return prediccion.strip()
   
 st.title('Pitonisa Imperial: Descubre tu destino')
-st.components.v1.html(open('maya_animation.html', 'r').read(), height=300)
+st.components.v1.html(open('maya_animation.html', 'r').read(), height=1000, scrolling=True)
+
+# Add custom CSS to make the background cover the entire page
+st.markdown("""
+<style>
+    .stApp {
+        background-color: transparent !important;
+    }
+    .stApp > div:first-child {
+        background: transparent !important;
+    }
+    iframe {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+    }
+</style>
+""", unsafe_allow_html=True)
 st.subheader("Escribe tu nombre en el canvas")
 stroke_width = st.slider("Grosor del pincel", 1, 35, 10)
 
