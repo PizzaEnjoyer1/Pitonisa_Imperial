@@ -1,7 +1,6 @@
 import os
 import streamlit as st
 from PIL import Image as Image, ImageOps as ImagOps
-import glob
 from gtts import gTTS
 import os
 import time
