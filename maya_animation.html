@@ -7,44 +7,86 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: #000;
+            background: linear-gradient(45deg, #0a192f, #112240, #020c1b);
+            font-family: 'Courier New', monospace;
         }
         #animation-container {
             width: 100%;
             height: 300px;
             position: relative;
+            perspective: 1000px;
+            overflow: hidden;
         }
         .matrix-symbol {
             position: absolute;
-            color: #0F0;
-            font-family: monospace;
+            color: #00ff41;
+            text-shadow: 0 0 5px #00ff41, 0 0 10px #00ff41;
             font-size: 16px;
             opacity: 0;
             animation: fall 10s linear infinite;
+            transform-origin: center;
+        }
+        .pyramid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(
+                    rgba(0,0,0,0.3), 
+                    rgba(0,0,0,0.3)
+                ),
+                repeating-linear-gradient(
+                    transparent 0%,
+                    rgba(13,255,0,0.05) 50%,
+                    transparent 100%
+                );
+            mix-blend-mode: overlay;
+            pointer-events: none;
+        }
+        .glitch {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            mix-blend-mode: screen;
+            opacity: 0.1;
+            animation: glitch 2s infinite;
         }
         @keyframes fall {
-            0% {
-                top: -20px;
+            0% { 
+                top: -20px; 
                 opacity: 0;
+                transform: rotateX(70deg) rotateY(20deg) scale(0.8);
             }
-            10% {
+            50% { 
                 opacity: 0.7;
+                transform: rotateX(40deg) rotateY(10deg) scale(1);
             }
-            90% {
-                opacity: 0.7;
-            }
-            100% {
-                top: 100%;
+            100% { 
+                top: 100%; 
                 opacity: 0;
+                transform: rotateX(20deg) rotateY(5deg) scale(1.2);
             }
+        }
+        @keyframes glitch {
+            0% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+            5% { clip-path: polygon(-10% 0, 110% 0, 100% 100%, -10% 100%); }
+            10% { clip-path: polygon(-10% 0, 110% 0, 100% 100%, -10% 100%); }
+            15% { clip-path: polygon(0 10%, 100% 0, 90% 100%, 0 100%); }
+            20% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
         }
     </style>
 </head>
 <body>
-    <div id="animation-container"></div>
+    <div id="animation-container">
+        <div class="glitch"></div>
+        <div class="pyramid-overlay"></div>
+    </div>
     <script>
         const container = document.getElementById('animation-container');
-        const symbols = 'ᚠᚡᚢᚣᚤᚥᚦᚧᚨᚩᚪᚫᚬᚭᚮᚯᚰᚱᚲᚳᚴᚵᚶ01010101ΞΑΒΓΔ';
+        const symbols = 'ᚠᚡᚢᚣᚤᚥᚦᚧᚨᚩᚪᚫᚬᚭᚮᚯᚰᚱᚲᚳᚴᚵᚶ01010101ΞΑΒΓΔ♦♣♠♥◉◌';
 
         function createSymbol() {
             const symbol = document.createElement('div');
