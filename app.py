@@ -18,7 +18,7 @@ def analizar_destino_maya(nombre):
         'C': "los códices cuánticos predicen que te convertirás en un/a maestro/a de la manipulación del tejido espacio-temporal",
         'D': "las matrices de jade sugieren que descubrirás antiguos secretos tecnológicos en las ruinas de Europa",
         'E': "los registros holográficos muestran que serás clave en la evolución de la bio-computación orgánica",
-        'F': "los patrones neuronales indican que te convertirás en un/a arquitecto/a de realidades virtuales sagradas",
+        'F': "los patrones neuronales indican que te convertirás en un/a arquitecto/a de realidades virtuales sagradas",A
         'G': "las profecías de Tikal revelan que desarrollarás una nueva forma de energía basada en la resonancia piramidal",
         'H': "los algoritmos ancestrales predicen que serás fundamental en la expansión del imperio hacia las estrellas",
         'I': "los registros de Uxmal sugieren que crearás una nueva forma de vida artificial basada en cristales de jade",
@@ -127,32 +127,11 @@ def analizar_destino_maya(nombre):
     """
     
     return prediccion.strip()
-
+  
 st.title('Pitonisa Imperial: Descubre tu destino')
 st.components.v1.html(open('maya_animation.html', 'r').read(), height=300)
-
 st.subheader("Escribe tu nombre en el canvas")
-
-# Replace slider with buttons for stroke size
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    pequeño = st.button("Pequeño (10)")
-with col2:
-    mediano = st.button("Mediano (20)")
-with col3:
-    grande = st.button("Grande (30)")
-
-# Default stroke width
-if 'stroke_width' not in st.session_state:
-    st.session_state.stroke_width = 10
-
-if pequeño:
-    st.session_state.stroke_width = 10
-elif mediano:
-    st.session_state.stroke_width = 20
-elif grande:
-    st.session_state.stroke_width = 30
+stroke_width = st.slider("Grosor del pincel", 1, 35, 10)
 
 color = st.radio(
     "Selecciona el color de escritura", 
@@ -162,17 +141,20 @@ color = st.radio(
 
 stroke_color = "black" if color == "Negro" else "white"
 
-# Create a full-width canvas component
+# Create a canvas component
 canvas_result = st_canvas(
-    fill_color="white",
-    stroke_width=st.session_state.stroke_width,
+    fill_color= "white",  # Fixed fill color with some opacity
+    stroke_width=stroke_width,
     stroke_color=stroke_color,
     background_color="white",
     height=200,
-    width=st.config.get_option("server.maxUploadSize"),  # Use maximum possible width
+    width=1280,
+    #background_image= None #Image.open(bg_image) if bg_image else None,
     drawing_mode="freedraw",
     key="canvas",
 )
+
+
 
 if st.button("Predice tu futuro"):
     if canvas_result.image_data is not None:
